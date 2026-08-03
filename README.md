@@ -1,13 +1,15 @@
-- 👋 Hi, I’m @Abubakabir34
-- 👀 I’m interested in ...
-- 🌱 I’m currently learning ...
-- 💞️ I’m looking to collaborate on ...
-- 📫 How to reach me ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
+# Sentiment Analysis App
 
-<!---
-Abubakabir34/Abubakabir34 is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
-thank you
+This project is a Streamlit-based sentiment analysis app that can be deployed on platforms like Render, Railway, or Heroku.
+
+## Run locally
+
+```bash
+streamlit run app.py
+```
+
+## Deployment notes
+
+- The app uses a repository-local dataset at [data/Labelled_stories.txt](data/Labelled_stories.txt)
+- The deployment entry point is [app.py](app.py)
+- The hosting command is defined in [Procfile](Procfile)

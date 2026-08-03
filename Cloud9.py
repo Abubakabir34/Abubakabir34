@@ -1,24 +1,20 @@
 # import packages
-import select
+import os
 import streamlit as st
-import pandas as pd
-import numpy as np
 
 # page setup
-st.set_page_config (
+st.set_page_config(
     page_title="Sentiment Analysis",
     page_icon="🔍",
-    layout="centered"
+    layout="centered",
 )
 
-
 # Global environment
-#import dataset
-dataset= "C:/Users/USER/PycharmProjects/TextAnalytics/Labelled_stories.txt"
-with open (dataset,"r", encoding="UTF-8") as file:
-    lines=file.readlines()
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATASET_PATH = os.path.join(BASE_DIR, "data", "Labelled_stories.txt")
 
-# clear representation of data
+with open(DATASET_PATH, "r", encoding="UTF-8") as file:
+    lines = [line.strip() for line in file.readlines() if line.strip()]
 
 
 
@@ -35,28 +31,30 @@ def page1():
         st.write(lines)
 
 
-
 def page2():
     st.subheader("Data preprocessing")
+    st.write("Text preprocessing steps will be added here.")
 
 
 def page3():
     st.subheader("Sentiment analysis")
+    st.write("Sentiment analysis results will be added here.")
 
 
 def page4():
     st.subheader("Evaluation")
+    st.write("Evaluation metrics will be added here.")
 
 
 # sidebar navigation
-pages={
+pages = {
     "Corpora Viewer": page1,
-    "data preprocessing": page2,
+    "Data preprocessing": page2,
     "Sentiment analysis": page3,
-    "Evaluation": page4
+    "Evaluation": page4,
 }
 
-select_page=st.sidebar.selectbox("Select page", list(pages.keys()))
+select_page = st.sidebar.selectbox("Select page", list(pages.keys()))
 pages[select_page]()
 
 
