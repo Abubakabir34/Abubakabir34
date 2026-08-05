@@ -29,6 +29,18 @@ def page1():
     st.subheader("Corpora Viewer")
     if st.checkbox("Raw Data: This displays student life story in raw form"):
         st.write(lines)
+    if st.checkbox("Processed Data: This displays student life story in processed form"):
+        processed_lines = [line.lower() for line in lines]  # Example processing: convert to lowercase
+        st.write(processed_lines)  # display the processed data
+    if st.checkbox("Data Summary: This displays the summary of the data"):
+        st.write(f"Total number of stories: {len(lines)}")
+        # Additional summary statistics can be added here
+    if st.checkbox("Data Visualization: This displays the visualization of the data"):
+        st.write("Data visualization will be added here.")  # Placeholder for data visualization
+    if st.checkbox("Tabular View: This displays the data in tabular form"):
+        st.write("Tabular view will be added here.")  # Placeholder for tabular view
+    if st.checkbox("Click to upload file"):
+        st.file_uploader("Upload a file", type=["txt", "csv"])  # Allow users to upload a file
 
 
 def page2():
