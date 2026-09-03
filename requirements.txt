@@ -2,9 +2,11 @@ streamlit>=1.35.0
 pandas>=2.0.0
 numpy>=1.26.0
 streamlit
-nltk
-scikit-learn
-gensim
-matplotlib
-seaborn
-pillow
+streamlit==1.61.0
+pandas==3.0.5
+numpy==2.4.6
+scikit-learn==1.8.0
+matplotlib==3.10.8
+seaborn==0.13.2
+nltk==3.9.2
+gensim==4.4.0
