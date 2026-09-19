@@ -1,9 +1,11 @@
 # ============================================================
-# STUDENT FEEDBACK SENTIMENT ANALYTICS
+# FEEDBACK SENTIMENT ANALYTICS
 # ============================================================
 import os
 import re
 import json
+from pathlib import Path
+
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -30,7 +32,9 @@ from gensim.models import Word2Vec
 from dotenv import load_dotenv
 from openai import OpenAI
 
-load_dotenv()  # reads OPENROUTER_API_KEY from a local .env file
+ENV_FILE = Path(__file__).resolve().with_name(".env")
+load_dotenv(ENV_FILE, override=True)
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "").strip()
 
 
 # ============================================================
@@ -405,15 +409,14 @@ class OpenRouterLLMClassifier:
 
     def _get_client(self):
         if self._client is None:
-            api_key = os.environ.get("OPENROUTER_API_KEY")
-            if not api_key:
+            if not OPENROUTER_API_KEY:
                 raise RuntimeError(
                     "OPENROUTER_API_KEY is not set. Add it to a "
                     ".env file next to this script."
                 )
             self._client = OpenAI(
                 base_url="https://openrouter.ai/api/v1",
-                api_key=api_key,
+                api_key=OPENROUTER_API_KEY,
             )
         return self._client
 
@@ -928,7 +931,7 @@ def page_model_performance(df):
 
         if run_llm:
 
-            if not os.environ.get("OPENROUTER_API_KEY"):
+            if not OPENROUTER_API_KEY:
                 st.error(
                     "OPENROUTER_API_KEY is not set. Add it to a "
                     ".env file next to this script and restart it."
@@ -1505,7 +1508,7 @@ if df.empty:
 # ============================================================
 
 st.title(
-    "🎓 Student Feedback Analytics"
+    "🎓 Feedback Analytics"
 )
 
 st.caption(
